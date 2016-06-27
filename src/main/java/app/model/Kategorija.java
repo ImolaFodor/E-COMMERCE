@@ -103,7 +103,7 @@ public class Kategorija {
 		return result;
 	}
 	
-	
+	//testcommit
 
 	@Override
 	public boolean equals(Object obj) {
