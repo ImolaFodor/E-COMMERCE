@@ -41,9 +41,13 @@ public class Prodavnica {
     @OneToMany(mappedBy = "prodavnica", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Kupovina> kupovine;
     
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn
-	private Korisnik prodavac;
+    @JsonIgnore
+    @OneToMany(mappedBy = "prodavnica", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Proizvod> proizvodi;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "prodavnica", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Korisnik> prodavci;
     
 	public Prodavnica() {
 		super();
@@ -122,14 +126,6 @@ public class Prodavnica {
 		this.recenzije = recenzije;
 	}
 
-	public Korisnik getProdavac() {
-		return prodavac;
-	}
-
-	public void setProdavac(Korisnik prodavac) {
-		this.prodavac = prodavac;
-	}
-
 
 	public Set<Kupovina> getKupovine() {
 		return kupovine;
@@ -141,6 +137,23 @@ public class Prodavnica {
 
 	
 	
+	public Set<Proizvod> getProizvodi() {
+		return proizvodi;
+	}
+
+	public void setProizvodi(Set<Proizvod> proizvodi) {
+		this.proizvodi = proizvodi;
+	}
+
+	
+	public Set<Korisnik> getProdavci() {
+		return prodavci;
+	}
+
+	public void setProdavci(Set<Korisnik> prodavci) {
+		this.prodavci = prodavci;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -154,11 +167,6 @@ public class Prodavnica {
 		result = prime * result + ((naziv == null) ? 0 : naziv.hashCode());
 		result = prime * result + Float.floatToIntBits(ocena);
 		result = prime * result + ((opis == null) ? 0 : opis.hashCode());
-		result = prime * result
-				+ ((prodavac == null) ? 0 : prodavac.hashCode());
-		result = prime * result
-				+ ((recenzije == null) ? 0 : recenzije.hashCode());
-		result = prime * result + ((telefon == null) ? 0 : telefon.hashCode());
 		return result;
 	}
 
@@ -205,16 +213,6 @@ public class Prodavnica {
 				return false;
 		} else if (!opis.equals(other.opis))
 			return false;
-		if (prodavac == null) {
-			if (other.prodavac != null)
-				return false;
-		} else if (!prodavac.equals(other.prodavac))
-			return false;
-		if (recenzije == null) {
-			if (other.recenzije != null)
-				return false;
-		} else if (!recenzije.equals(other.recenzije))
-			return false;
 		if (telefon == null) {
 			if (other.telefon != null)
 				return false;
@@ -222,6 +220,8 @@ public class Prodavnica {
 			return false;
 		return true;
 	}
+
+	
 
 	
 	

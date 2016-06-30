@@ -4,14 +4,19 @@
 min-width: 200px;">
     	<p>{{user.name}}</p>
         <h2>
-            <span class="md-padding">{{'APP_TITLE' | translate}}</span>
+            <span class="md-padding">{{'WEB SHOP'}}</span>
         </h2>
 
         <md-list layout="column" flex>
-            <md-button class="nav-option" ui-sref-active="active" ui-sref="main.restaurants">{{'RESTOURANTS' | translate}}</md-button>
-            <md-button class="nav-option" ui-sref-active="active" ui-sref="main.user">{{'USER' | translate}}</md-button>
-            <md-button ng-hide="user.role!='GOST'" class="nav-option" ui-sref-active="active" ui-sref="main.friends">{{'FRIENDS' | translate}}</md-button>
-            <md-button ng-show ="user.role === 'MENADZER_SISTEMA'" class="nav-option" ui-sref-active="active" ui-sref="main.createManager">{{'CREATE_MANAGER' | translate}}</md-button>
+            <md-button class="nav-option" ui-sref-active="active" ui-sref="main.pocetna">{{'POČETNA'}}</md-button>
+            <md-button class="nav-option" ui-sref-active="active" ui-sref="main.user">{{'MOJ PROFIL'}}</md-button>
+            <md-button ng-hide="user.uloga!='KUPAC'" class="nav-option" ui-sref-active="active" ui-sref="main.kupovine">{{'MOJE KUPOVINE'}}</md-button>
+            <md-button ng-hide ="user.uloga!='KUPAC'" class="nav-option" ui-sref-active="active" ui-sref="main.korpa">{{'KORPA'}}</md-button>
+            <md-button ng-hide ="user.uloga==='KUPAC'" class="nav-option" ui-sref-active="active" ui-sref="main.createManager">{{'PRODAVNICE'}}</md-button>
+            <md-button ng-hide ="user.uloga==='KUPAC'" class="nav-option" ui-sref-active="active" ui-sref="main.createManager">{{'PROIZVODI'}}</md-button>
+            <md-button ng-show ="user.uloga==='ADMINISTRATOR'" class="nav-option" ui-sref-active="active" ui-sref="main.createManager">{{'DOSTAVLJAČI'}}</md-button>
+            <md-button ng-show ="user.uloga==='ADMINISTRATOR'" class="nav-option" ui-sref-active="active" ui-sref="main.createManager">{{'KATEGORIJE'}}</md-button>
+            <md-button ng-show ="user.uloga==='ADMINISTRATOR'" class="nav-option" ui-sref-active="active" ui-sref="main.createManager">{{'ŽALBE'}}</md-button>
             <div flex></div>
             
             <md-button class="nav-option" data-ng-click="logout()"> {{'LOGOUT' | translate}}</md-button>

@@ -65,9 +65,10 @@ public class Korisnik {
     @OneToMany(mappedBy = "kupac", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Recenzija> recenzije;
     
-    @JsonIgnore
-    @OneToMany(mappedBy = "prodavac", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Prodavnica> prodavnice;
+    
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinColumn
+	private Prodavnica prodavnica;
     
     @JsonIgnore
     @OneToMany(mappedBy = "kupac", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -103,13 +104,14 @@ public class Korisnik {
 	public void setKorisnickoIme(String korisnickoIme) {
 		this.korisnickoIme = korisnickoIme;
 	}
+	
 
-	public Set<Prodavnica> getProdavnice() {
-		return prodavnice;
+	public Prodavnica getProdavnica() {
+		return prodavnica;
 	}
 
-	public void setProdavnice(Set<Prodavnica> prodavnice) {
-		this.prodavnice = prodavnice;
+	public void setProdavnica(Prodavnica prodavnica) {
+		this.prodavnica = prodavnica;
 	}
 
 	public String getLozinka() {
@@ -211,7 +213,7 @@ public class Korisnik {
 				+ ((kupovine == null) ? 0 : kupovine.hashCode());
 		result = prime * result + ((lozinka == null) ? 0 : lozinka.hashCode());
 		result = prime * result
-				+ ((prodavnice == null) ? 0 : prodavnice.hashCode());
+				+ ((prodavnica == null) ? 0 : prodavnica.hashCode());
 		result = prime * result
 				+ ((recenzije == null) ? 0 : recenzije.hashCode());
 		result = prime
@@ -268,10 +270,10 @@ public class Korisnik {
 				return false;
 		} else if (!lozinka.equals(other.lozinka))
 			return false;
-		if (prodavnice == null) {
-			if (other.prodavnice != null)
+		if (prodavnica == null) {
+			if (other.prodavnica != null)
 				return false;
-		} else if (!prodavnice.equals(other.prodavnice))
+		} else if (!prodavnica.equals(other.prodavnica))
 			return false;
 		if (recenzije == null) {
 			if (other.recenzije != null)

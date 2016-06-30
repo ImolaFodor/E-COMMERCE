@@ -28,6 +28,14 @@ import app.repository.KorisnikRepository;
 @RestController
 @RequestMapping("/prodavnice")
 public class ProdavnicaController {
-
+	
+	@Autowired
+	ProdavnicaRepository prodavnicaRepository;
+	
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity getProdavnice(){
+		return new ResponseEntity(prodavnicaRepository.findAll(), HttpStatus.OK);
+	}
 	
 }

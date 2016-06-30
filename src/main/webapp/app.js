@@ -18,25 +18,30 @@ app.config(function($stateProvider, $urlRouterProvider, $translateProvider, $htt
             controller: 'main'
         })
 
-        .state('main.restaurants', {
-            url: 'restaurants',
-            templateUrl: 'module/restaurants/list.html',
-            controller: 'restaurantsList'
+        .state('main.prodavnice', {
+            url: 'prodavnice',
+            templateUrl: 'module/prodavnice/prodavnicaManagment.html',
+            controller: 'prodavnicaManagmentController'
         })
         .state('main.user', {
             url: 'user',
             templateUrl: 'module/user/userMain.html',
             controller: 'userMain'
         })
-        .state('main.friends', {
-            url: 'friends',
-            templateUrl: 'module/friends/friendsMain.html',
-            controller: 'friendsMain'
+        .state('main.pocetna', {
+            url: 'pocetna',
+            templateUrl: 'module/pocetna/pocetna.html',
+            controller: 'pocetnaController'
         })
-        .state('main.createManager', {
-            url: 'createManager',
-            templateUrl: 'module/manager/managerMain.html',
-            controller: 'managerMain'
+        .state('main.kupovine', {
+            url: 'kupovine',
+            templateUrl: 'module/kupovine/kupovineLista.html',
+            controller: 'kupovineListaController'
+        })
+        .state('main.kupovine.korpa', {
+            url: 'korpa',
+            templateUrl: 'module/kupovine/korpa/korpa.html',
+            controller: 'korpaController'
         });
 
     //Ne radi UTF-8 sa ovim

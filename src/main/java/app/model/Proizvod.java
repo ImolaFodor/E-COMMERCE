@@ -34,17 +34,21 @@ public class Proizvod {
 	private float ocena;
 	private int kolicina;
 	
-	@JsonIgnore
+	
     @OneToMany(mappedBy = "proizvod", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Recenzija> recenzije;
 	
-	@JsonIgnore
+	
     @OneToMany(mappedBy = "proizvod", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Kupovina> kupovine;
 	
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn
 	private Kategorija kategorija;
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn
+	private Prodavnica prodavnica;
 
 	public int getId() {
 		return id;
@@ -170,6 +174,15 @@ public class Proizvod {
 		this.kategorija = kategorija;
 	}
 	
+	
+	
+	public Prodavnica getProdavnica() {
+		return prodavnica;
+	}
+
+	public void setProdavnica(Prodavnica prodavnica) {
+		this.prodavnica = prodavnica;
+	}
 
 	@Override
 	public int hashCode() {
@@ -180,14 +193,13 @@ public class Proizvod {
 		result = prime * result
 				+ ((dimenzije == null) ? 0 : dimenzije.hashCode());
 		result = prime * result + id;
-		result = prime * result
-				+ ((kategorija == null) ? 0 : kategorija.hashCode());
+		result = prime * result + ((kategorija == null) ? 0 : kategorija.hashCode());
 		result = prime * result + kolicina;
-		result = prime * result
-				+ ((kupovine == null) ? 0 : kupovine.hashCode());
+		result = prime * result + ((kupovine == null) ? 0 : kupovine.hashCode());
 		result = prime * result + madeIn;
 		result = prime * result + ((naziv == null) ? 0 : naziv.hashCode());
 		result = prime * result + Float.floatToIntBits(ocena);
+		result = prime * result + ((prodavnica == null) ? 0 : prodavnica.hashCode());
 		result = prime * result
 				+ ((proizvodjac == null) ? 0 : proizvodjac.hashCode());
 		result = prime * result
@@ -244,6 +256,11 @@ public class Proizvod {
 			return false;
 		if (Float.floatToIntBits(ocena) != Float.floatToIntBits(other.ocena))
 			return false;
+		if (prodavnica == null) {
+			if (other.prodavnica != null)
+				return false;
+		} else if (!prodavnica.equals(other.prodavnica))
+			return false;
 		if (proizvodjac == null) {
 			if (other.proizvodjac != null)
 				return false;
@@ -268,10 +285,7 @@ public class Proizvod {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
 	
 	
 }

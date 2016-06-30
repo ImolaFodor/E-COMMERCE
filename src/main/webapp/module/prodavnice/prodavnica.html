@@ -1,0 +1,30 @@
+<md-content flex layout="column" class="container">
+    <md-toolbar class="md-primary md-hue-2 md-whiteframe-z1" layout="row" layout-align="space-around center">
+        <md-button class="md-icon-button" hide-gt-sm data-ng-click="toggleNavigation()">
+            <md-icon class="material-icons">menu</md-icon>
+        </md-button>
+        
+        <div hide-gt-sm></div>
+    </md-toolbar>
+	
+    <md-content class="frame" layout="column" layout-align="start center" layout-padding flex ng-init="init()">
+    
+    	<div class = "container" layout = "row" flex = "10">
+    		<md-input-container >
+	    		<label>{{'NAME' | translate}}</label>
+	            	<input name="name" ng-model="search.naziv" >
+	        </md-input-container>
+    	</div>
+    	<div class="container" flex = "90">    
+          <md-card >
+                <md-card-content>
+                    <md-list>
+                        <md-list-item class="md-3-line" ng-repeat="proizvod in proizvodi  | filter:{naziv: search.naziv}" ng-click = "openProdavnicaDetails(ticket)" ng-show="proizvodi.length > 0">
+                        <p>{{proizvod.naziv}}</p>
+      					</md-list-item>
+                        <md-list-item ng-show="tickets.length === 0"> <label>{{ "NEMA PROIZVODA"}}</label></md-list-item>
+                    </md-list>
+        </div>
+    </md-content>
+    
+</md-content>
